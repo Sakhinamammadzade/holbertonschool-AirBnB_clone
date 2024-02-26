@@ -2,7 +2,7 @@
 """"BaseModel"""
 
 
-import uuid
+from uuid import uuid4
 from datetime import datetime
 
 
@@ -10,7 +10,7 @@ class BaseModel:
     """Define model"""
     def __init__(self):
         """Base class constructor"""
-        self.id = uuid.uuid4()
+        self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
