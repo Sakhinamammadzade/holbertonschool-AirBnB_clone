@@ -3,7 +3,7 @@
 
 
 import uuid
-import datetime
+from datetime import datetime
 
 
 class BaseModel:
@@ -11,21 +11,22 @@ class BaseModel:
     def __init__(self):
         """Base class constructor"""
         self.id = uuid.uuid4()
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def __str__(self):
         """Str method"""
-        return f'[{type(self).__name__}] {self.id} {self.__dict__}'
+        className = self.__class__.__name__
+        return "[{}] ({}) {}".format(className, self.id, self.__dict__)
 
     def save(self):
         """save memory"""
-        self.created_at = datetime.datetime.now()
+        self.created_at = datetime.now()
 
     def to_dict(self):
         """Dict"""
-        instance_dict = self.__dict__.copy()
-        instance_dict['__class__'] = type(self).__name__
-        instance_dict['created_at'] = instance_dict['created_at'].isoformat()
-        instance_dict['updated_at'] = instance_dict['updated_at'].isoformat()
-        return instance_dict
+        dict_copy = self.__dict__.copy()
+        dict_copy["created_at"] = self.created_at.isoformat()
+        dict_copy["updated_at"] = self.updated_at.isoformat()
+        dict_copy['__class__'] = self.__class__.__name__
+        return dict_copy
