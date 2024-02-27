@@ -9,11 +9,6 @@ from datetime import datetime
 
 class BaseModel:
     """Define model"""
-    def __init__(self):
-        """Base class constructor"""
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
 
     def __init__(self, *args, **kwargs):
         """Base class constructor"""
@@ -39,7 +34,7 @@ class BaseModel:
     def save(self):
         """save memory"""
         self.updated_at = datetime.now()
-        models.storage.save()u
+        models.storage.save()
 
     def to_dict(self):
         """Dict"""
