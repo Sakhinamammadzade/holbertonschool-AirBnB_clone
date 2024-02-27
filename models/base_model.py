@@ -2,6 +2,7 @@
 """"BaseModel"""
 
 
+import models
 from uuid import uuid4
 from datetime import datetime
 
@@ -14,6 +15,22 @@ class BaseModel:
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
+    def __init__(self, *args, **kwargs):
+        """Base class constructor"""
+        if len(kwargs) != 0:
+            forma = "%Y-%m-%dT%H:%M:%S.%f"
+            for k, v in kwargs.items():
+                if k == "created_at" or k == "updated_at":
+                    v = datetime.strptime(kwargs[k], forma)
+                    setattr(self, k, v)
+                elif k != "__class__":
+                    setattr(self, k, kwargs[k])
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
+
     def __str__(self):
         """Str method"""
         className = self.__class__.__name__
@@ -22,6 +39,7 @@ class BaseModel:
     def save(self):
         """save memory"""
         self.updated_at = datetime.now()
+        models.storage.save()u
 
     def to_dict(self):
         """Dict"""
