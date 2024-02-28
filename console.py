@@ -108,21 +108,22 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 3:
             print("** value missing **")
             return
-
-        key = "{}.{}".format(args[0], args[1])
-        if key not in all_objects:
-            print("** no instance found **")
-            return
-
-        instance = all_objects[key]
-        attribute_name = args[2]
-        attribute_value = args[3]
-
-        if hasattr(instance, attribute_name):
-            setattr(instance, attribute_name, eval(attribute_value))
-            instance.save()
         else:
-            print("** attribute doesn't exist **")
+
+            key = "{}.{}".format(args[0], args[1])
+            if key not in all_objects:
+                print("** no instance found **")
+                return
+
+            instance = all_objects[key]
+            attribute_name = args[2]
+            attribute_value = args[3]
+
+            if hasattr(instance, attribute_name):
+                setattr(instance, attribute_name, eval(attribute_value))
+                instance.save()
+            else:
+                print("** attribute doesn't exist **")
 
 
 if __name__ == '__main__':
