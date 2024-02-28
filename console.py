@@ -75,18 +75,17 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints all string representations of all instances"""
-        objects_list = []
-
-        if arg:
-            if arg not in ["BaseModel"]:
-                print("** class doesn't exist **")
-                return
-
-        for key, value in storage.all().items():
-            if arg is None or value.__class__.__name__ == arg:
-                objects_list.append(str(value))
-
-        print(objects_list)
+        args = arg.split()
+        all_objects = storage.all()
+        if len(args) == 0:
+            for key, value in all_objects.items():
+                print(str(value))
+        elif command[0] not in self.__classes:
+            print("** class doesn't exist **")
+        else:
+            for key, value in objects.items():
+                if key.split(".")[0] == command[0]:
+                    print(str(value))
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
