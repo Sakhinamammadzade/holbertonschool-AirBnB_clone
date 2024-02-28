@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-"""Module for console program."""
+#!/usr/bin/python3
 
 import cmd
 from models.base_model import BaseModel
@@ -20,25 +19,25 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """Do nothing on empty input"""
-        pass    
-    
+        pass
+
     def do_create(self, arg):
-        """create new inst of BaseModel"""
+        """Create a new instance of BaseModel"""
         if not arg:
-            print("class name missing")
-        if arg != "BaseModel":
-            print("class doesn't exist")
+            print("** class name missing **")
+        elif arg not in "BaseModel":
+            print("** class doesn't exist **")
         else:
             new_instance = BaseModel()
             new_instance.save()
-            return (new_instance.id)
+            print(new_instance.id)
 
     def do_show(self, arg):
+        """Prints the string representation of an instance"""
         args = arg.split()
-
         if len(args) == 0:
             print("** class name missing **")
-            return 
+            return
         elif args[0] not in ["BaseModel"]:
             print("** class doesn't exist **")
             return
@@ -54,8 +53,8 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, arg):
+        """Deletes an instance based on the class name and id"""
         args = arg.split()
-
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -65,24 +64,29 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print("** instance id missing **")
             return
-
-        key = "{}.{}".format(args[0], args[1])
-        all_objects = storage.all()
-        if key in all_objects:
-            del all_objects[key]
-            storage.save()
         else:
-            print("** no instance found **")
+            key = "{}.{}".format(args[0], args[1])
+            all_objects = storage.all()
+            if key in all_objects:
+                del all_objects[key]
+                storage.save()
+            else:
+                print("** no instance found **")
+
     def do_all(self, arg):
         """Prints all string representations of all instances"""
-        args = arg.split()
-        all_objects = storage.all()
-        if not args:
-            print([str(all_objects[key]) for key in all_objects])
-        elif args[0] not in ["BaseModel"]:
-            print("** class doesn't exist **")
-        else:
-            print([str(all_objects[key]) for key in all_objects if key.startswith(args[0])])
+        objects_list = []
+
+        if arg:
+            if arg not in ["BaseModel"]:
+                print("** class doesn't exist **")
+                return
+
+        for key, value in storage.all().items():
+            if arg is None or value.__class__.__name__ == arg:
+                objects_list.append(str(value))
+
+        print(objects_list)
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
@@ -115,10 +119,11 @@ class HBNBCommand(cmd.Cmd):
         attribute_value = args[3]
 
         if hasattr(instance, attribute_name):
-            attribute_type = type(getattr(instance, attribute_name))
-            setattr(instance, attribute_name, attribute_type(attribute_value))
+            setattr(instance, attribute_name, eval(attribute_value))
             instance.save()
         else:
             print("** attribute doesn't exist **")
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
