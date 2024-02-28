@@ -80,11 +80,12 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             for key, value in all_objects.items():
                 print(str(value))
-        elif command[0] not in self.__classes:
+        elif args[0] not in ["BaseModel"]:
             print("** class doesn't exist **")
         else:
-            for key, value in objects.items():
-                print(str(value))
+            for key, value in all_objects.items():
+                if key.split(".")[0] == args[0]:
+                    print(str(value))
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
