@@ -10,8 +10,9 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class FileStorage:
-    """serializes instances to a JSON file and deserializes JSON file to instances"""
+    """serializese and deserializes JSON file to instances"""
     __file_path = "file.json"
     __objects = {}
 
@@ -38,7 +39,7 @@ class FileStorage:
             with open(self.__file_path, "r") as file_path:
                 objdict = json.load(file_path).items()
                 for k, v in objdict:
-                    v  = eval(k.split(".")[0])(**v)
+                    v = eval(k.split(".")[0])(**v)
                     self.__objects[k] = v
         except Exception:
             pass
