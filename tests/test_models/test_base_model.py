@@ -26,4 +26,4 @@ class TestBaseModel(TestCase):
     def test__str__(self):
         className = BaseModel.__name__
         result = "[{}] ({}) {}".format(className, self.b1.id, self.b1.__dict__)
-        self.assertNotEqual(result, self.b1.__str__())
+        self.assertEqual(result, self.b1.__str__())
