@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in self.__classes:
             print("** class doesn't exist **")
             return
         elif len(args) == 1:
@@ -75,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in self.__classes
             print("** class doesn't exist **")
             return
         elif len(args) == 1:
@@ -97,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             for key, value in all_objects.items():
                 print(str(value))
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in self.__classes:
             print("** class doesn't exist **")
         else:
             for key, value in all_objects.items():
@@ -111,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in self.__classes:
             print("** class doesn't exist **")
             return
         elif len(args) == 1:
