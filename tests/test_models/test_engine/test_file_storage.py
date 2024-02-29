@@ -2,13 +2,15 @@
 from unittest import TestCase
 from models.base_model import BaseModel
 import os
+import json
 from models.engine.file_storage import FileStorage
 
-class TestFileStorage(BaseModel):
+class TestFileStorage(TestCase):
     def setUp(self):
         self.f1 = FileStorage()
         self.b1 = BaseModel()
         self.file_path = "file.json"
+        self.object = {"BaseModel.123": {"id": "123", "name": "test"}}
 
         with open(self.file_path, "w") as f:
             json.dump(self.object, f)
@@ -26,7 +28,7 @@ class TestFileStorage(BaseModel):
 
         with open(self.file_path, "r") as f:
             read_data = f.read()
-        self.asserIn("{}.{}".format(self.b1.__class__.__name__, self.b1.id), read_data)
+        self.assertIn("{}.{}".format(self.b1.__class__.__name__, self.b1.id), read_data)
     
     def test_reload(self):
         self.f1.save()
