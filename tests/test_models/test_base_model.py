@@ -16,6 +16,8 @@ class TestBaseModel(TestCase):
         updated_at = self.b1.updated_at
         self.b1.save()
         self.assertNotEqual(updated_at, self.b1.updated_at)
+        with open("file.json", "r") as file:
+            self.assertIn("BaseModel.{}".format(self.b1.id), file.read())
 
     def test_to_dict(self):
         new = self.b1.to_dict()
