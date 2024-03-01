@@ -5,6 +5,7 @@ import os
 import json
 from models.engine.file_storage import FileStorage
 
+
 class TestFileStorage(TestCase):
     def setUp(self):
         self.f1 = FileStorage()
@@ -28,8 +29,9 @@ class TestFileStorage(TestCase):
 
         with open(self.file_path, "r") as f:
             read_data = f.read()
-        self.assertIn("{}.{}".format(self.b1.__class__.__name__, self.b1.id), read_data)
-    
+            name = self.b1.__class__.__name__
+        self.assertIn("{}.{}".format(name, self.b1.id), read_data)
+
     def test_reload(self):
         self.f1.save()
         self.f1._FileStorage__objects.clear()

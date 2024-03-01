@@ -4,6 +4,7 @@ from unittest import TestCase
 from models.user import User
 from datetime import datetime
 
+
 class TestUser(TestCase):
     def setUp(self):
         self.b1 = User()

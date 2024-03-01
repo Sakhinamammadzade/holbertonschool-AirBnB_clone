@@ -4,6 +4,7 @@ from unittest import TestCase
 from models.city import City
 from datetime import datetime
 
+
 class TestCity(TestCase):
     def setUp(self):
         self.b1 = City()

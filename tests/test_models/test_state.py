@@ -37,4 +37,3 @@ class TestState(TestCase):
     def test_name(self):
         self.assertTrue(hasattr(self.b2, "name"))
         self.assertEqual(self.b2.name, "")
-

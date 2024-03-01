@@ -2,13 +2,14 @@
 from unittest import TestCase
 from models.base_model import BaseModel
 
+
 class TestBaseModel(TestCase):
     def setUp(self):
         self.b1 = BaseModel()
         self.b2 = BaseModel()
         self.created_at = self.b1.created_at.isoformat()
         self.updated_at = self.b1.updated_at.isoformat()
-    
+
     def test_atributes(self):
         self.assertNotEqual(self.b1.id, self.b2.id)
 
