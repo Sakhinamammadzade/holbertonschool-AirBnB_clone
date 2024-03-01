@@ -4,7 +4,7 @@ from unittest import TestCase
 from models.city import City
 from datetime import datetime
 
-class TestUser(TestCase):
+class TestCity(TestCase):
     def setUp(self):
         self.b1 = City()
         self.b1.created_at = datetime.now()

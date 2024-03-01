@@ -5,7 +5,7 @@ from models.state import State
 from datetime import datetime
 
 
-class TestUser(TestCase):
+class TestState(TestCase):
     def setUp(self):
         self.b1 = State()
         self.b1.created_at = datetime.now()
