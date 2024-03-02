@@ -6,7 +6,7 @@
 <p align="center">An AirBnB clone.</p>
 
 
-## Description :
+## 📁Description :
 
 HolbertonBnB is a comprehensive web application inspired by AirBnB, merging database storage, a dynamic back-end API, and user-friendly front-end interfaces. Presently, the project boasts a robust back-end console, serving as the cornerstone for managing the application's functionality. Through this console, users can execute a plethora of operations, from creating and updating property listings to managing user profiles and bookings with ease. As development progresses, HolbertonBnB aims to enrich its offerings by incorporating a visually appealing front-end interface, complemented by seamless integration with a powerful back-end API. This holistic approach will ensure a delightful user experience and elevate HolbertonBnB to new heights in the realm of property rental management platforms.
 
@@ -248,7 +248,11 @@ m', 'first_name': 'Holberton', 'updated_at': datetime.datetime(2019, 2, 17, 21,
 (hbnb) 
 ```
 
-## Testing :
+## 🐛 Bugs:
+No known bugs at this time.
+
+
+## 🛂 Testing :
 
 Unittests for the HolbertonBnB project are defined in the [tests](./tests) 
 folder. To run the entire test suite simultaneously, execute the following command:
@@ -263,6 +267,6 @@ Alternatively, you can specify a single test file to run at a time:
 $ python3 unittest -m tests/test_console.py
 ```
 
-## Authors :
+## ✍🏽 Authors :
 * **Sakhina Mammamdzade** <[sakhinamammadzade](https://github.com/sakhinamammadzade)>
 * **Arzu Mirzabayova** <[arzumirzeb](https://github.com/arzumirzeb)>
