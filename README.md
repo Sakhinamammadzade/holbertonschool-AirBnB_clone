@@ -1,4 +1,3 @@
-kamal
 <p align="center">
   <img src="https://github.com/Sakhinamammadzade/holbertonschool-AirBnB_clone/blob/main/hbnb.png" alt="HolbertonBnB logo">
 </p>
